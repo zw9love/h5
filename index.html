@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/cssreset-min.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <style>
+    .container{
+        width:100%;
+        max-width: 480px;
+        height: 100%;
+        min-width: 320px;
+        box-sizing:border-box;
+        /*border:1px solid #aaa;*/
+        margin:0 auto;
+        background: #ccc;
+        perspective:500px;
+        -webkit-perspective:500px;
+        -ms-perspective:500px;
+        -moz-perspective:500px;
+    }
+    header{
+        width:100%;
+        position: relative;
+        height: 64px;
+    }
+    header>div{
+        width:216px;
+        height:64px;
+        position: relative;
+        margin:0 auto;
+/*        position: absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);*/
+        /*background: skyblue;*/
+    }
+    .pos1{
+        position: absolute;
+        left:0;
+        top:0;
+        width:27px;
+        height:8px;
+        background: url(images/logo.png) no-repeat;
+    }
+    .pos2{
+        position: absolute;
+        left:0;
+        top:0;
+        background: url(images/fashion1.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    section{
+        width:100%;
+        position: relative;
+        text-align: center;
+        overflow:hidden;
+        margin:20px 0px;
+    }
+
+    section>img{
+        width:80%;
+        vertical-align: top;
+        display: block;
+        position: relative;
+        margin:0 auto;
+        left:1000px;
+    }
+
+    section>img.init{
+        transform:rotateY(360deg);
+        -webkit-transform:rotateY(360deg);
+        -moz-transform:rotateY(360deg);
+        -ms-transform:rotateY(360deg);
+    }
+
+    div.main{
+        width:100%;
+        overflow: hidden;
+        transform-style:preserve-3d;
+        -ms-transform-style:preserve-3d;
+        -moz-transform-style:preserve-3d;
+        -webkit-transform-style:preserve-3d;
+        transform:translateZ(500px) rotateY(0deg);
+        transition:all 2s ease 0s;
+    }
+
+    div.girl{
+        transform:translateZ(0px) rotateY(-360deg);
+    }
+
+    div.main>div{
+        width:33.33%;
+        float: left;
+        text-align: center;
+        height: 100%;
+    }
+
+    div.main>div img{
+        height:100%;
+        vertical-align: top;
+    }
+
+   /* footer{
+        width:100%;
+        position: relative;
+        height: 64px;
+    }
+    footer>div{
+        width:216px;
+        height:100%;
+        position: relative;
+        margin:0 auto;
+        overflow: hidden;
+    }
+    .pos3{
+        position: absolute;
+        left:0;
+        top:0;
+        width:27px;
+        height:8px;
+        background: url(images/font.png) no-repeat;
+    }*/
+    </style>
+</head>
+<body>
+    <div class="container">
+            <header>
+                <div></div>
+            </header>
+            <section>
+                <img src="images/fashion1.png" alt="">
+            </section>
+            <div class="main">
+
+            </div>
+            <footer>
+                <div></div>
+            </footer>
+            
+    </div>
+    <script>
+    // var w=$(window).width();  //魅族note2   360px
+    // var h=$(window).height();   //魅族note2   567px
+    // $('.container').html('屏幕宽度是:'+w+'  屏幕高度是'+h);
+    $(function(){
+       
+       every({
+        'row':8,
+        'col':8,
+        'width':27,
+        'height':8,
+        'distance':{
+            'top':-500
+        },
+        'classStyle':'pos1',
+        'target':'header>div',
+        'time':10
+       });
+
+       // var h=$('.container').height();
+       // var h1=$('header').height();
+       // var h2=$('section').height()+40;
+
+       // // console.log(h,h1,h2);
+       // $('.main').height(h-h1-h2);
+       $('section>img').load(function(){
+            resizeInit();
+            $(this).delay(700).animate({
+                'left':0
+            },1000,function(){
+                $(this).css({
+                    'transition':'all 2s ease 0s'
+                });
+                $(this).addClass('init');
+                $('div.main').addClass('girl');
+            });
+            
+       });
+
+    });
+
+    function  resizeInit(){
+         var h=$(window).height();
+         var h1=$('header').height();
+         var h2=$('section').height()+40;
+         // console.log(h,h1,h2);
+         $('.container').height(h);
+         $('.main').height(h-h1-h2);
+         $('<div><img src="images/girl1.png" alt=""></div><div><img src="images/girl2.png" alt=""></div><div><img src="images/girl4.png" alt=""></div>').appendTo($('.main'));
+    }
+    /* 
+        row : 几行
+        col : 几列
+        width : 每个div的宽度
+        height : 每个div的高度
+        distance :  初始点距离
+        classStyle : 类名
+        target:  插入哪里
+        time:每个延迟多少
+    */
+    function every(json){
+        for(var i=0;i<json['row'];i++){
+            for(var j=0;j<json['col'];j++){
+                var obj=$('<div class="'+json['classStyle']+'"></div>');
+                obj.offset({
+                    left:i*json['width'],
+                    top:j*json['height']
+                });
+                obj.attr({
+                    'pos_x':i*json['width'],
+                    'pos_y':j*json['height']
+                });
+                obj.css({
+                    'width':json['width'],
+                    'height':json['height'],
+                    'background-position':-i*json['width']+'px '+(-j*json['height'])+'px'
+                });
+                obj.appendTo($(json['target']));
+                obj.css(json['distance']);
+            }
+       }
+
+       $('.'+json['classStyle']).each(function(i){
+            var x=$(this).attr('pos_x');
+            var y=$(this).attr('pos_y');
+            $(this).delay(i*json['time']).animate({
+                left:x,
+                top:y
+            });
+       });
+    }
+
+    $(window).on('resize',resizeInit);
+    </script>
+</body>
+</html>
