@@ -9,9 +9,14 @@
     <script src="./js/jquery-2.1.4.min.js"></script>
     <script src="./js/swiper.min.js"></script>
     <style>
+    body{
+        overflow: hidden;
+        position: relative;
+
+    }
     .container{
         width:100%;
-        max-width: 480px;
+        max-width: 600px;
         height: 100%;
         min-width: 320px;
         box-sizing:border-box;
@@ -22,11 +27,14 @@
         -webkit-perspective:500px;
         -ms-perspective:500px;
         -moz-perspective:500px;
+        overflow: hidden;
+        position: relative;
     }
     header{
         width:100%;
         position: relative;
         height: 64px;
+        margin-top:20px;
     }
     header>div{
         width:216px;
@@ -54,7 +62,7 @@
         background: url(images/fashion1.png) no-repeat;
         background-size: 100% 100%;
     }
-    section{
+    section.banner1{
         width:100%;
         position: relative;
         text-align: center;
@@ -62,23 +70,21 @@
         margin:20px 0px;
     }
 
-    section>img{
+    section.banner1>img{
         width:80%;
         vertical-align: top;
         display: block;
         position: relative;
         margin:0 auto;
         left:1000px;
+        transition:all 1s ease 0s;
     }
 
-    section>img.init{
-        transform:rotateY(360deg);
-        -webkit-transform:rotateY(360deg);
-        -moz-transform:rotateY(360deg);
-        -ms-transform:rotateY(360deg);
+    section.banner1>img.init{
+        left:0;
     }
 
-    div.main{
+    div.main1{
         width:100%;
         overflow: hidden;
         transform-style:preserve-3d;
@@ -93,38 +99,198 @@
         transform:translateZ(0px) rotateY(-360deg);
     }
 
-    div.main>div{
+    div.main1>div{
         width:33.33%;
         float: left;
         text-align: center;
         height: 100%;
     }
 
-    div.main>div img{
+    div.main1>div img{
         height:100%;
         vertical-align: top;
     }
 
-   /* footer{
+    footer{
         width:100%;
-        position: relative;
-        height: 64px;
+        height:20px;
+        position: fixed;
+        left:50%;
+        bottom:40px;
+        transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+        -moz-transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+        text-align: center;
+        animation:animate 1s ease 4s infinite;
+        -webkit-animation:animate 1s ease 4s infinite;
+        -moz-animation:animate 1s ease 4s infinite;
+        opacity:0;
+
     }
+
     footer>div{
-        width:216px;
-        height:100%;
-        position: relative;
-        margin:0 auto;
-        overflow: hidden;
+        width:20px;
+        height:20px;
+        border-bottom:2px solid #666;
+        border-right:2px solid #666;
+        display: inline-block;
+        -ms-transform:rotate(45deg);
+        -moz-transform:rotate(45deg);
+        -webkit-transform:rotate(45deg);
+        transform:rotate(45deg);
+        cursor: pointer;
+
     }
-    .pos3{
-        position: absolute;
-        left:0;
-        top:0;
-        width:27px;
-        height:8px;
-        background: url(images/font.png) no-repeat;
-    }*/
+
+    @-webkit-keyframes animate{
+        from{
+            bottom:40px;
+            opacity: 1;
+        }
+        to{
+            bottom:70px;
+            opacity: 0;
+        }
+    }
+
+    @-moz-keyframes animate{
+        from{
+            bottom:40px;
+            opacity: 1;
+        }
+        to{
+            bottom:70px;
+            opacity: 0;
+        }
+    }
+
+    @keyframes animate{
+        from{
+            bottom:40px;
+            opacity: 1;
+        }
+        to{
+            bottom:70px;
+            opacity: 0;
+        }
+    }
+
+    div.container .banner2{
+        width:100%;
+        text-align: center;
+        margin-top:20px;
+    }
+
+    div.container .banner2 img{
+        width:80%;
+        vertical-align: top;
+        opacity: 0;
+    }
+
+    div.container .banner2 img.scale{
+        animation:scale 2s cubic-bezier(.215,.61,.355,1) 0s forwards;
+    }
+
+    @-webkit-keyframes scale{
+        0%{
+            opacity: 0;
+            -webkit-transform: scale3d(.3,.3,.3);
+            transform: scale3d(.3,.3,.3);
+        }
+        30%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(1.5,1.5,1.5);
+            transform: scale3d(1.5,1.5,1.5);
+        }
+        40%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(.9,.9,.9);
+            transform: scale3d(.9,.9,.9);
+        }
+        60%{
+            opacity: 1;
+            -webkit-transform: scale3d(1.03,1.03,1.03);
+            transform: scale3d(1.03,1.03,1.03);
+        }
+        80%{
+            /*opacity: 0;*/
+            -webkit-transform:  scale3d(.97,.97,.97);
+            transform:  scale3d(.97,.97,.97);
+        }
+        100%{
+            opacity: 1;
+            -webkit-transform: scale3d(1,1,1);;
+            transform: scale3d(1,1,1);
+        }
+    }
+
+    @-moz-keyframes scale{
+        0%{
+            opacity: 0;
+            -webkit-transform: scale3d(.3,.3,.3);
+            transform: scale3d(.3,.3,.3);
+        }
+        30%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(1.5,1.5,1.5);
+            transform: scale3d(1.5,1.5,1.5);
+        }
+        40%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(.9,.9,.9);
+            transform: scale3d(.9,.9,.9);
+        }
+        60%{
+            opacity: 1;
+            -webkit-transform: scale3d(1.03,1.03,1.03);
+            transform: scale3d(1.03,1.03,1.03);
+        }
+        80%{
+            /*opacity: 0;*/
+            -webkit-transform:  scale3d(.97,.97,.97);
+            transform:  scale3d(.97,.97,.97);
+        }
+        100%{
+            opacity: 1;
+            -webkit-transform: scale3d(1,1,1);;
+            transform: scale3d(1,1,1);
+        }
+    }
+
+    @keyframes scale{
+        0%{
+            opacity: 0;
+            -webkit-transform: scale3d(.3,.3,.3);
+            transform: scale3d(.3,.3,.3);
+        }
+        30%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(1.5,1.5,1.5);
+            transform: scale3d(1.5,1.5,1.5);
+        }
+        40%{
+            /*opacity: 0;*/
+            -webkit-transform: scale3d(.9,.9,.9);
+            transform: scale3d(.9,.9,.9);
+        }
+        60%{
+            opacity: 1;
+            -webkit-transform: scale3d(1.03,1.03,1.03);
+            transform: scale3d(1.03,1.03,1.03);
+        }
+        80%{
+            /*opacity: 0;*/
+            -webkit-transform:  scale3d(.97,.97,.97);
+            transform:  scale3d(.97,.97,.97);
+        }
+        100%{
+            opacity: 1;
+            -webkit-transform: scale3d(1,1,1);;
+            transform: scale3d(1,1,1);
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -132,23 +298,30 @@
             <header>
                 <div></div>
             </header>
-            <section>
+            <section class="banner1">
                 <img src="images/fashion1.png" alt="">
             </section>
-            <div class="main">
-
+            <div class="main1">
             </div>
-            <footer>
-                <div></div>
-            </footer>
-            
+            <footer><div></div></footer>
+    </div>
+    <div class="container">
+            <section class="banner2">
+                <img src="images/font.png" alt="">
+            </section>
     </div>
     <script>
+    var h;
+    var lock=true;
     // var w=$(window).width();  //魅族note2   360px
     // var h=$(window).height();   //魅族note2   567px
     // $('.container').html('屏幕宽度是:'+w+'  屏幕高度是'+h);
-    $(function(){
-       
+    
+    screen_one();
+    
+
+    //屏1进场动画
+    function screen_one(){
        every({
         'row':8,
         'col':8,
@@ -158,42 +331,150 @@
             'top':-500
         },
         'classStyle':'pos1',
-        'target':'header>div',
-        'time':10
+        'target':'.container:nth-child(1) header>div',
+        'time':20
+       });
+       $(".container:nth-child(1)").off();
+       $('.container:nth-child(1)').on('touchstart',function(e){
+        e.preventDefault();
+
+        if(e.originalEvent.touches.length > 1){
+            return;
+        }
+
+        var time_start=new Date().getTime();
+        var distance_start=e.originalEvent.touches[0].clientY;
+
+        $(this).on('touchend',function(e){
+            // console.log(e);
+            e.preventDefault();
+            var time_end=new Date().getTime();
+            var distance_end=e.originalEvent.changedTouches[0].clientY;
+            var time=time_end-time_start;
+            var distance=distance_end-distance_start;
+            //console.log(time,distance);
+            if( (time<300 && -distance>30) || (-distance >=  h/ 2) ){
+                    
+                    screen_one_event();
+            }
+        });
+
        });
 
-       // var h=$('.container').height();
-       // var h1=$('header').height();
-       // var h2=$('section').height()+40;
-
-       // // console.log(h,h1,h2);
-       // $('.main').height(h-h1-h2);
-       $('section>img').load(function(){
-            resizeInit();
-            $(this).delay(700).animate({
-                'left':0
-            },1000,function(){
-                $(this).css({
-                    'transition':'all 2s ease 0s'
-                });
-                $(this).addClass('init');
-                $('div.main').addClass('girl');
-            });
+       $('.container:nth-child(1) footer').find('div').click(function(){
+            
+            screen_one_event();
             
        });
 
-    });
+       $('section.banner1>img').load(function(){
+
+            resizeInit();
+            $(this).delay(1300).addClass('init');
+            $('div.main1').delay(1300).addClass('girl');   
+       });
+
+    }
+
+    //屏1的离场事件触发的dom操作
+    function screen_one_event(){
+        $('body').animate({
+                'top':-h
+            },500,function(){
+            // $('.container:eq('+n+')').empty();
+            //alert(1);
+            //点击之后屏2进场表演了
+            if($('.container:nth-child(2) header').length==0){
+            $('<header><div></div></header>').insertBefore($('.container:nth-child(2) .banner2'));
+            $('<footer><div></div></footer>').insertAfter($('.container:nth-child(2) .banner2'));
+            }
+            //console.log($('.container:nth-child(2) header>div'));
+            //屏1离场,为下次进场做准备(用户看不见)
+
+            $('section.banner1>img').removeClass('init');
+
+            $('div.main1').removeClass('girl');
+            $('.container:nth-child(1) header>div .pos1').remove();
+            screen_two();
+        });
+    }
+
+    //屏2进场动画
+    function screen_two(){
+        every({
+                'row':8,
+                'col':8,
+                'width':27,
+                'height':8,
+                'distance':{
+                    'top':-100
+                },
+                'classStyle':'pos1',
+                'target':'.container:nth-child(2) header>div',
+                'time':20,
+        });
+
+        $(".container:nth-child(2) .banner2 img").addClass('scale');
+
+        $(".container:nth-child(2)").off();
+        $('.container:nth-child(2)').on('touchstart',function(e){
+        e.preventDefault();
+
+        if(e.originalEvent.touches.length > 1){
+            return;
+        }
+
+        var time_start=new Date().getTime();
+        var distance_start=e.originalEvent.touches[0].clientY;
+
+        $(this).on('touchend',function(e){
+            e.preventDefault();
+            var time_end=new Date().getTime();
+            var distance_end=e.originalEvent.changedTouches[0].clientY;
+            var time=time_end-time_start;
+            var distance=distance_end-distance_start;
+            //console.log(time,distance);
+            if( (time<300 && distance>30) || (distance >=  h/ 2) ){
+                    screen_two_event_up();
+            }
+        });
+
+       });
+
+       $('.container:nth-child(2) footer').find('div').click(function(){
+            
+            // screen_two_event_up();
+       });
+    }
+
+    //屏2的向上离场事件触发的dom操作
+    function screen_two_event_up(){
+        $('body').animate({
+                'top':0
+            },500,function(){
+            $(".container:nth-child(2) .banner2 img").removeClass('scale');
+            //点击之后屏1进场表演了
+            //屏2离场,为下次进场做准备(用户看不见)
+            $('.container:nth-child(2) header>div .pos1').remove();
+            screen_one();
+            $('section.banner1>img').delay(1300).addClass('init');
+            $('div.main1').addClass('girl');
+
+        });
+    }
 
     function  resizeInit(){
-         var h=$(window).height();
-         var h1=$('header').height();
-         var h2=$('section').height()+40;
+         h=$(window).height();
+         var h1=$('header').height()+20;
+         var h2=$('section.banner1').height()+40;
          // console.log(h,h1,h2);
          $('.container').height(h);
-         $('.main').height(h-h1-h2);
-         $('<div><img src="images/girl1.png" alt=""></div><div><img src="images/girl2.png" alt=""></div><div><img src="images/girl4.png" alt=""></div>').appendTo($('.main'));
+         $('div.main1').height(h-h1-h2);
+         $('<div><img src="images/girl1.png" alt=""></div><div><img src="images/girl2.png" alt=""></div><div><img src="images/girl4.png" alt=""></div>').appendTo($('div.main1'));
     }
+
     /* 
+        头部动画函数
         row : 几行
         col : 几列
         width : 每个div的宽度
@@ -204,6 +485,8 @@
         time:每个延迟多少
     */
     function every(json){
+        // if(lock)
+        // console.log(json['target']);
         for(var i=0;i<json['row'];i++){
             for(var j=0;j<json['col'];j++){
                 var obj=$('<div class="'+json['classStyle']+'"></div>');
@@ -220,6 +503,9 @@
                     'height':json['height'],
                     'background-position':-i*json['width']+'px '+(-j*json['height'])+'px'
                 });
+                if($(json['target']).find(json['classStyle']).length>=64){
+                    return;
+                }
                 obj.appendTo($(json['target']));
                 obj.css(json['distance']);
             }
