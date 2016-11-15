@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/cssreset-min.css">
     <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="js/velocity.js"></script>
     <style>
     body{
         overflow: hidden;
@@ -289,9 +290,88 @@
         }
     }
 
+    .hide{
+        width:100%;
+        z-index: 10000;
+        background: url(images/background.jpg) no-repeat;
+        background-size: cover;
+        position:fixed;
+        left:0;
+        top:0;
+    }
+
+    .hide_container{
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        -moz-transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+    }
+
+    .hide_logo{
+        display: inline-block;
+    }
+
+    .hide_logo img{
+        vertical-align: top;
+    }
+
+    .hide_progress{
+        width:100%;
+        height:6px;
+        margin-top:10px;
+        position: relative;
+    }
+
+    .hide_progress_active{
+        position: absolute;
+        left:0;
+        top:0;
+        width:0%;
+        height: 100%;
+        background: red;
+    }
+
+    .hide_container>p{
+        text-align: center;
+        font-size:16px;
+        width:100%;
+        margin-top:10px;
+    }
+
+    .hide_info{
+        position: absolute;
+        left:50%;
+        bottom:20px;
+        transform:translateX(-50%);
+    }
+
+    .hide_info h2{
+        text-align: center;
+        color:#333;
+    }
+
     </style>
 </head>
 <body>
+    <div class="hide">
+            <div class="hide_container">
+            <div class="hide_logo">
+                <img src="images/logo.png" alt="">
+            </div>
+            <div class="hide_progress">
+                <div class="hide_progress_active"></div>
+            </div>
+            <p><span id="count">0</span>%</p>
+            
+            </div>
+            <div class="hide_info">
+                <h2>北京贺喜时尚科技有限公司</h2>
+            </div>
+    </div>
+
     <div class="container">
             <header>
                 <div></div>
@@ -309,14 +389,40 @@
             </section>
     </div>
     <script>
-    var h;
+    var h=$(window).height();
     var lock=true;
+    var n=0;
+    $('.hide').height(h);
+    $('.container').height(h);
     // var w=$(window).width();  //魅族note2   360px
     // var h=$(window).height();   //魅族note2   567px
     // $('.container').html('屏幕宽度是:'+w+'  屏幕高度是'+h);
     
-    screen_one();
-    
+    var timer=setInterval(function(){
+        n++;
+        if(n>100){
+            clearInterval(timer);
+        }else{
+        $('#count').html(n);
+        }
+    },30);
+    $('.hide_progress_active').animate({
+        'width':'100%'
+    },3030,function(){
+        $('.hide').animate({
+            'top':'-100%'
+        },1000,function(){
+            $('.hide').remove();
+            screen_one();
+            $('section.banner1>img').delay(1300).addClass('init');
+            $('div.main1').delay(1300).addClass('girl');   
+        });
+    });
+
+
+    $('section.banner1>img').load(function(){
+            resizeInit();
+    });
 
     //屏1进场动画
     function screen_one(){
@@ -365,12 +471,7 @@
             
        });
 
-       $('section.banner1>img').load(function(){
-
-            resizeInit();
-            $(this).delay(1300).addClass('init');
-            $('div.main1').delay(1300).addClass('girl');   
-       });
+       
 
     }
 
@@ -462,13 +563,14 @@
     }
 
     function  resizeInit(){
-         h=$(window).height();
+         
          var h1=$('header').height()+20;
          var h2=$('section.banner1').height()+40;
          // console.log(h,h1,h2);
-         $('.container').height(h);
+         
          $('div.main1').height(h-h1-h2);
          $('<div><img src="images/girl1.png" alt=""></div><div><img src="images/girl2.png" alt=""></div><div><img src="images/girl4.png" alt=""></div>').appendTo($('div.main1'));
+         
     }
 
     /* 
